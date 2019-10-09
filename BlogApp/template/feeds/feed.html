@@ -1,13 +1,69 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content%}
 
-
-{% if user.is_authenticated %}
-<h1> Feeds (user is authenticated) </h1>
-{% else %}
-<h1> Feeds ( user is not authenticated)</h1>
-{% endif %}
+<link rel="stylesheet" href="{% static 'styleFeed.css'%}" />
 
 
+
+
+<h3 >Blog Posts </h3>
+
+<div id="maincard" class="maincard" name="maincard">  
+        {% for posts in postss %} 
+  <div *ngFor="let posts of posts$ | async" class="row" > 
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{posts.Image}}" style="height: 300px;" >
+        
+          <a class="btn-floating halfway-fab waves-effect waves-light red" href="/singlefeed?Post={{posts.PostID}}"><i class="material-icons">visibility</i></a>
+        </div>
+     
+  <div class="chip blue" style="color: white">
+      {{posts.Catagory}}
+    </div>
+        <div class="card-content" >
+          <h5>{{posts.PostTitle}}</h5>
+          <p>{{posts.PostMessage}}</p>
+        </div>
+        <div class="chip blue" style="color: white">
+            <img src="{% static 'img/user.png'%}" alt="Contact Person">
+            {{posts.Username}}
+          </div>
+          
+  <div class="chip blue" style="color: white">
+    {{posts.DateTime}}
+  </div>
+
+<hr>
+
+  <form >
+    <div class="row">
+
+   
+      <input id="PostID"  name="PostID"  type="hidden" value="{{posts.PostID}}"  >
+  
+    <div class="input-field col s6">
+      <i class="material-icons prefix">comment</i>
+      <input id="Comment"  name="Comment" type="text" >
+      <label for="Comment">Add Comments Here</label>
+    </div>
+    
+     
+    
+  
+    <button class="btn-floating blue" type="submit"   value="submite"><i class="material-icons">check</i></button>
+
+        
+        
+  </div>
+      </form>
+    
+  </div>
+  </div>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}
