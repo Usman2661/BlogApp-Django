@@ -3,15 +3,27 @@
 <h1>Login Page</h1>
 
 
-        <form novalidate>
+        <form action="{% url 'login' %}" method="POST" >
+
+            {% for message in messages %}
+
+            <div class="alert alert-success">
+                <a class="close" href="#" data-dismiss="alert">×</a>
+
+                {{ message }}
+
+            </div>
+           {% endfor %}
+
             <div class="input-field col s12">
+       
+        {% csrf_token %}               
                 <i class="material-icons prefix">email</i>
                 <input id="email" type="email" name="email" class="validate"
                  >
                 <label for="email">Email</label>
               </div>
-          
-            
+  
               <div class="input-field col s12">
                   <i class="material-icons prefix">lock</i>
                   <input id="password"  type="password" name="password" class="validate" 

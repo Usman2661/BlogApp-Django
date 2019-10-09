@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content%}
+
+
+{% if user.is_authenticated %}
+<h1> Feeds (user is authenticated) </h1>
+{% else %}
+<h1> Feeds ( user is not authenticated)</h1>
+{% endif %}
+
+
+
+{% endblock %}
