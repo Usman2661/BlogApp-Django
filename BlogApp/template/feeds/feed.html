@@ -10,14 +10,14 @@
 <h3 >Blog Posts </h3>
 
 <div id="maincard" class="maincard" name="maincard">  
-        {% for posts in postss %} 
+        {% for posts in feed %} 
   <div *ngFor="let posts of posts$ | async" class="row" > 
     <div class="col s12 m6">
       <div class="card">
         <div class="card-image">
-          <img src="{{posts.Image}}" style="height: 300px;" >
+          <img src="{{posts.Image.url}}" style="height: 300px;" >
         
-          <a class="btn-floating halfway-fab waves-effect waves-light red" href="/singlefeed?Post={{posts.PostID}}"><i class="material-icons">visibility</i></a>
+          <a class="btn-floating halfway-fab waves-effect waves-light red" href="/singlefeed?Post={{posts.id}}"><i class="material-icons">visibility</i></a>
         </div>
      
   <div class="chip blue" style="color: white">
@@ -29,7 +29,7 @@
         </div>
         <div class="chip blue" style="color: white">
             <img src="{% static 'img/user.png'%}" alt="Contact Person">
-            {{posts.Username}}
+            {{posts.UserID.first_name}}
           </div>
           
   <div class="chip blue" style="color: white">
@@ -38,7 +38,7 @@
 
 <hr>
 
-  <form >
+  <form action="{% url 'feed'%}" method="POST" >
     <div class="row">
 
    
@@ -50,9 +50,6 @@
       <label for="Comment">Add Comments Here</label>
     </div>
     
-     
-    
-  
     <button class="btn-floating blue" type="submit"   value="submite"><i class="material-icons">check</i></button>
 
         
