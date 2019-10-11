@@ -3,12 +3,14 @@ from django.urls import path
 from . import views 
 from django.contrib.auth.models import User,auth
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, reverse
 from django.contrib.auth import authenticate
 from django.contrib import messages
 import requests
 from .models import Feeds
 from comment.models import Comments
+from django import forms
+from .forms import FeedForm
 
 # Create your views here.
 def feed(request):
@@ -44,14 +46,13 @@ def singlefeed(request):
 
             comment=request.POST['Comment']
             PostID=request.POST['PostID']
-            # UserID=request.user.id
-            # print(UserID)
-            UserID=2
+            UserID=request.user.id
+            print(UserID)
 
-            mycomment=Comments.objects.create(Comment=comment, PostID=3, UserID_id=2)
+            mycomment=Comments.objects.create(Comment=comment, PostID=PostID, UserID_id=UserID)
             mycomment.save()
 
-            return redirect('singlefeed?Post='+PostID)
+            return redirect(reverse('singlefeed') + '?Post='+PostID)
         else:
             PostID=request.GET.get('Post')
             feed=Feeds.objects.get(pk=PostID)
@@ -64,8 +65,20 @@ def singlefeed(request):
     else:
         return redirect('login')
 def createfeed(request):
+
     if request.user.is_authenticated:
-        return render(request,'feeds/createfeed.html')
+
+        if request.method == 'POST':
+            form = FeedForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('createfeed')
+        else:
+            form = FeedForm()
+            return render(request, 'feeds/createfeed.html', {
+            'form': form
+            })
+            
     else:
         return redirect('login')
     

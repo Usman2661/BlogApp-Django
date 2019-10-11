@@ -41,7 +41,7 @@
           <form action="{%url 'singlefeed'%}" method="POST" >
           <div class="row">
             {% csrf_token %}
-              <input id="PostID"  name="PostID"  type="hidden" value="{{feed.PostID}}"  >
+              <input id="PostID"  name="PostID"  type="hidden" value="{{feed.id}}"  >
           
             <div class="input-field col s6">
               <i class="material-icons prefix">comment</i>
