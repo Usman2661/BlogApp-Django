@@ -1,6 +1,71 @@
 {% extends 'base.html' %}
+{% load static%}
 {% block content%}
-<h1>Single Feed</h1>
+
+<link rel="stylesheet" href="{% static 'css/singleFeed.css'%}" />
+
+
+<div id ="maincard" name="maincard" class= "maincard">
+    
+        <div  class="row1" > 
+            <div class="col s12 m6">
+              <div class="card">
+                <div class="card-image">
+                  <img src="{{feed.Image.url}}" style="height: 300px;" >
+                
+        
+                </div>
+             
+          <div class="chip blue" style="color: white">
+              {{feed.Catagory}}
+            </div>
+                <div class="card-content">
+                  <h5>{{feed.PostTitle}}</h5>
+                  <p id="post-text" class="post-text">{{feed.PostMessage}} </p>
+                </div>
+              
+                
+              
+        
+                <div class="chip blue" style="color: white">
+                    <img src="{% static 'img/user.png'%}" alt="Contact Person">
+                    {{feed.UserID.first_name}}
+                  </div>
+                  
+          <div class="chip blue" style="color: white">
+           
+            {{feed.DateTime}}
+          </div>
+        
+        <hr>
+          <form action="{%url 'singlefeed'%}" method="POST" >
+          <div class="row">
+            {% csrf_token %}
+              <input id="PostID"  name="PostID"  type="hidden" value="{{feed.PostID}}"  >
+          
+            <div class="input-field col s6">
+              <i class="material-icons prefix">comment</i>
+              <input id="Comment"  name="Comment" type="text" >
+              <label for="Comment">Add Comments Here</label>
+            </div>
+            <button class="btn-floating blue" type="submit"    value="submite"><i class="material-icons">check</i></button>
+              </div>
+              </form>
+              {% for mycomments in comment %}
+              <div class="mycomments">
+                <div class="chip" >
+                  <img src="{% static 'img/user.png'%}" alt="Contact Person">
+                  {{mycomments.UserID.first_name}}:{{mycomments.Comment}}--{{mycomments.DateTime}}
+                </div>
+              </div>
+              {% endfor %}
+              
+            </div>
+          </div>
+        
+        
+    </div>
+    </div>
 
 
 
