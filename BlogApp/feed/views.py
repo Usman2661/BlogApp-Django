@@ -56,7 +56,7 @@ def singlefeed(request):
         else:
             PostID=request.GET.get('Post')
             feed=Feeds.objects.get(pk=PostID)
-            comment=Comments.objects.filter(PostID=PostID)
+            comment=Comments.objects.filter(PostID=PostID).order_by('-DateTime')
             context={
                 'feed':feed,
                 'comment':comment
@@ -74,6 +74,9 @@ def createfeed(request):
                 newpost=form.save(commit=False)
                 newpost.UserID_id=request.user.id
                 newpost.save()
+                return redirect('createfeed')
+            else:
+                print("Form didn't validate")
                 return redirect('createfeed')
         else:
             form = FeedForm()

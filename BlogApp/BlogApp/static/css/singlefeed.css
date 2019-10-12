@@ -48,7 +48,7 @@ and (orientation : portrait) {
 and (min-width : 1301px) and (max-width:1380px) {
 
 	.maincard{
-        margin-left:200px;
+        margin-left:250px;
         width:700px;
        
     }
@@ -101,8 +101,8 @@ and (min-width : 1150px) and (max-width:1300px) {
 and (min-width : 1535px) and (max-width:1598px) {
 	
     .maincard{
-        margin-left:100px;
-        width:700px;
+        margin-left:350px;
+        width:800px;
        
     }
     h5{

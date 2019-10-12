@@ -46,18 +46,8 @@ and (orientation : portrait) {
 /* 1366 by 768 Most Used Screen*/
 @media only screen
 and (min-width : 1301px) and (max-width:1380px) {
-h3 {
-	margin-left:450px;
-	
-}
-.card-content{
-	margin-top:-40px;
-}
-.maincard{
-	position: absolute;
-	margin-left: 240px;
-	width:1100px;	
-}
+  
+  
 
 }
 /* 1920 by 1080 2nd Most Used Screen*/
@@ -85,18 +75,10 @@ and (min-width : 1150px) and (max-width:1300px) {
 /* 1536 by 864 6th Most Used Screen*/
 @media only screen
 and (min-width : 1535px) and (max-width:1598px) {
-	h3 {
-		margin-left:400px;
-	
-	}
-	.maincard{
-		margin-left: 300px; 
-		width:1200px;
-	}
-	.card-content{
-        margin-top:-40px;
-    }
-	
+
+
+
+
 }
 /* 1024 by 768 7th Most Used Screen*/
 @media only screen

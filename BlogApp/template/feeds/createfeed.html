@@ -1,25 +1,68 @@
 {% extends 'base.html' %}
+{% load static%}
 {% block content%}
-<h1>New Post</h1>
+
+<link rel="stylesheet" href="{% static 'css/createfeed.css'%}" />
+<div class="newpost">
+        <h1>New Post</h1>
+</div>
 
 <form action="{% url 'createfeed' %}" method="POST" enctype="multipart/form-data">
 
     {% csrf_token %}
     {% for field in form %}
-    <div class="input-field col s12" id="group_{{ field.name }}">
+    <!-- <div class="input-field col s12" id="group_{{ field.name }}">
         <label for="id_{{ field.name }}" class="control-label">{{ field.label }}</label>
         <div class="input-field col s6">
                 <i class="material-icons prefix">title</i>
             {{ field }}
         </div>
+    </div> -->
+  
+
+
+    {% if field.label == 'Image' %}
+    <div class="image">
+            <div class="input-field col s8">
+                    <!-- <input formControlName="PostTitle" id="PostTitle" type="text" ngModel> -->
+                    {{ field }}
+                </div>
     </div>
+ 
+    {% else %}
+    <div class="createpost">
+
+            <div class="input-field col s8">
+                    {% if  field.label == 'PostTitle' %}
+                    <i class="material-icons prefix">title</i>
+                    {% elif field.label == 'PostMessage' %}
+                    <i class="material-icons prefix">description</i>
+                    {% elif field.label == 'Catagory'%}
+                    <i class="material-icons prefix">layers</i>
+                    {% else %}
+                    <i class="material-icons prefix"></i>
+                    {% endif %}
+                   
+                    <label for="PostTitle">{{field.label}}</label>
+                    <!-- <input formControlName="PostTitle" id="PostTitle" type="text" ngModel> -->
+                    {{ field }}
+                </div>
+    </div>
+
+    {% endif %}
+    
+   
 {% endfor %}
     
 <br>  
 <br>
+<div class="createbutton">
+
         <button class="btn waves-effect waves-light" type="submit"  value="submite">Create Post
-            <i class="material-icons right">send</i>
-          </button>
+                <i class="material-icons right">send</i>
+              </button>
+</div>
+     
         </form>
 
 {% endblock %}
