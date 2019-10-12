@@ -71,7 +71,9 @@ def createfeed(request):
         if request.method == 'POST':
             form = FeedForm(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
+                newpost=form.save(commit=False)
+                newpost.UserID_id=request.user.id
+                newpost.save()
                 return redirect('createfeed')
         else:
             form = FeedForm()

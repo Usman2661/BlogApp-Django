@@ -5,3 +5,4 @@ class FeedForm(forms.ModelForm):
     class Meta:
         model = Feeds
         fields = ('PostTitle', 'PostMessage','Image','Catagory',)
+        exclude= ['UserID']

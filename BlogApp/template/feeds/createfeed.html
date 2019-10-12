@@ -5,8 +5,16 @@
 <form action="{% url 'createfeed' %}" method="POST" enctype="multipart/form-data">
 
     {% csrf_token %}
-    {{ form.as_p }}
-
+    {% for field in form %}
+    <div class="input-field col s12" id="group_{{ field.name }}">
+        <label for="id_{{ field.name }}" class="control-label">{{ field.label }}</label>
+        <div class="input-field col s6">
+                <i class="material-icons prefix">title</i>
+            {{ field }}
+        </div>
+    </div>
+{% endfor %}
+    
 <br>  
 <br>
         <button class="btn waves-effect waves-light" type="submit"  value="submite">Create Post
