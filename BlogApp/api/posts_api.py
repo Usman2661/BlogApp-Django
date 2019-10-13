@@ -5,7 +5,6 @@ from rest_framework import viewsets
 class NoteSerialiser(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-
         model = Feeds
         fields = ('PostTitle', 'PostMessage', 'Image', 'Catagory', 'DateTime','UserID_id')
     

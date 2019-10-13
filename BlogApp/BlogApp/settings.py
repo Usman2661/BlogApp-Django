@@ -24,7 +24,7 @@ SECRET_KEY = ')j=u+oyotvmn1(9lzsm)@bxyq0j18c)ahdsaog93hs!-pc)s4f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.8.100','localhost']
 
 
 # Application definition
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'comment.apps.CommentConfig',
     'api.apps.ApiConfig',
+    'rental.apps.RentalConfig',
     'feed.apps.FeedConfig',
     'django.contrib.admin',
     'django.contrib.auth',

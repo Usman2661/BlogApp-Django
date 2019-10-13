@@ -4,7 +4,7 @@ from  django.contrib.auth.models import User
 
 # Create your models here.
 class Feeds(models.Model):
-    UserID = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    UserID = models.ForeignKey(User,on_delete=models.CASCADE)
     PostTitle= models.CharField(max_length=200)
     PostMessage=models.TextField(blank=True)
     Image = models.ImageField(upload_to='photos', blank=False)
